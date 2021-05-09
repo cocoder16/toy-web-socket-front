@@ -22,7 +22,10 @@ function LogIn() {
           <button type="button" className="btn btn-primary">
             확인
           </button>
-          <button type="button" className="btn btn-light">
+          <button
+            data-testid="skip-btn"
+            type="button"
+            className="btn btn-light">
             건너뛰기
           </button>
         </div>
