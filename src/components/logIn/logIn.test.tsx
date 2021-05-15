@@ -1,14 +1,17 @@
-// import React from "react";
-// import { render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
-// import LogIn from "components/logIn";
+import LogIn from "src/components/logIn";
 
-// describe("<Counter />", () => {
-//   const userName = "dummy";
+describe("LogIn", () => {
+  const onSignedIn = jest.fn();
+  const { getByText } = render(<LogIn onSignedIn={onSignedIn} />);
+  const guideMessage = "닉네임";
+  const confirmBtnText = "확인";
+  const skipBtnText = "건너뛰기";
 
-//   it("renders todos properly", () => {
-//     const { getByText } = render(<LogIn userName={userName} />);
-//     getByText(userName.text); // 닉네임 입력 텍스트
-//     // 버튼 렌더
-//   });
-// });
+  it("render", () => {
+    getByText(guideMessage);
+    getByText(confirmBtnText);
+    getByText(skipBtnText);
+  });
+});
