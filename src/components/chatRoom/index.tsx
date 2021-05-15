@@ -1,6 +1,10 @@
 import React from "react";
 
-function ChatRoom() {
+type IProps = {
+  nickname: string;
+};
+
+function ChatRoom({ nickname }: IProps) {
   return <div data-testid="chat-room">chat room</div>;
 }
 

@@ -3,8 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import App from "src/App";
 
 describe("App", () => {
-  const utils = render(<App />);
-  const { getByTestId } = utils;
+  const { getByTestId } = render(<App />);
 
   it("click skip btn => render chat room", () => {
     const logInComponent = getByTestId("log-in");

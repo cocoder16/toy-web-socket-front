@@ -15,7 +15,8 @@ function LogIn({ onSignedIn }: IProps) {
             닉네임
           </label>
           <input
-            type="email"
+            data-testid="nickname-input"
+            type="text"
             className="form-control"
             id="user-name-input"
             maxLength={12}

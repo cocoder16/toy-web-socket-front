@@ -12,7 +12,11 @@ function App() {
 
   return (
     <Fragment>
-      {isSignedIn ? <ChatRoom /> : <LogIn onSignedIn={handleSignIn} />}
+      {isSignedIn ? (
+        <ChatRoom nickname="" />
+      ) : (
+        <LogIn onSignedIn={handleSignIn} />
+      )}
     </Fragment>
   );
 }
