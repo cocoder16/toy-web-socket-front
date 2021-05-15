@@ -1,8 +1,14 @@
 import React from "react";
 
-function LogIn() {
+type IProps = {
+  onSignedIn: () => void;
+};
+
+function LogIn({ onSignedIn }: IProps) {
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
+    <div
+      className="d-flex justify-content-center align-items-center vh-100"
+      data-testid="log-in">
       <form className="card" style={{ width: 300, padding: 14 }}>
         <div className="mb-3">
           <label htmlFor="user-name-input" className="form-label">
@@ -25,7 +31,8 @@ function LogIn() {
           <button
             data-testid="skip-btn"
             type="button"
-            className="btn btn-light">
+            className="btn btn-light"
+            onClick={onSignedIn}>
             건너뛰기
           </button>
         </div>

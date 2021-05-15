@@ -4,15 +4,15 @@ import App from "src/App";
 
 describe("App", () => {
   const utils = render(<App />);
-  const { getByText, getByTestId } = utils;
-  const skipBtn = getByTestId("skip-btn");
-
-  it("render skip btn", () => {
-    expect(skipBtn).toBeTruthy();
-  });
+  const { getByTestId } = utils;
 
   it("click skip btn => render chat room", () => {
+    const logInComponent = getByTestId("log-in");
+    const skipBtn = getByTestId("skip-btn");
+    expect(logInComponent).toBeInTheDocument();
+
     fireEvent.click(skipBtn);
-    getByText("chat room");
+    const chatRoomComponent = getByTestId("chat-room");
+    expect(chatRoomComponent).toBeInTheDocument();
   });
 });

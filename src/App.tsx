@@ -1,9 +1,20 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 
 import LogIn from "src/components/logIn";
+import ChatRoom from "src/components/chatRoom";
 
 function App() {
-  return <LogIn />;
+  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+
+  const handleSignIn = () => {
+    setIsSignedIn(true);
+  };
+
+  return (
+    <Fragment>
+      {isSignedIn ? <ChatRoom /> : <LogIn onSignedIn={handleSignIn} />}
+    </Fragment>
+  );
 }
 
 export default App;
