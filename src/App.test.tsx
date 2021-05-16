@@ -20,7 +20,7 @@ describe("App", () => {
     expect(myNickname).toHaveTextContent("렌고쿠 쿄주로");
 
     fireEvent.change(nicknameInput, { target: { value: "카마도 탄지로" } });
-    fireEvent.keyDown(nicknameInput, { key: "Enter", code: 13 });
+    fireEvent.keyDown(nicknameInput, { key: "Enter", code: "Enter" });
     expect(myNickname).toHaveTextContent("카마도 탄지로");
   });
 });

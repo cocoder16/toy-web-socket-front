@@ -20,6 +20,11 @@ function LogIn({ onChangeNickname, nicknameInput }: IProps) {
           className="form-control w300"
           id="user-name-input"
           maxLength={12}
+          onKeyDown={e => {
+            if (e.code === "Enter") {
+              onChangeNickname();
+            }
+          }}
         />
         <Button
           dataTestid="nickname-confirm-btn"
