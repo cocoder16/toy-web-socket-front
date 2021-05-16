@@ -13,7 +13,7 @@ function ChatRoom({ nickname }: IProps) {
       style={{ width: 1000 }}
     >
       <div className="text-box">
-        <span>{nickname}</span> 님 환영합니다!
+        <span data-testid="my-nickname">{nickname}</span> 님 환영합니다!
       </div>
       <div data-testid="chat-window" className="card" style={{ height: 600 }}>
         <div>list</div>
