@@ -1,44 +1,29 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import LogIn from "src/components/logIn";
 import ChatRoom from "src/components/chatRoom";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [nickname, setNickname] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("익명");
+  const nicknameInput = useRef<HTMLInputElement>(null);
 
-  const handleChangeNickname = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setNickname(value);
-  };
-
-  const handleLogIn = () => {
+  const handleChangeNickname = () => {
+    const inputElement = nicknameInput.current;
+    const nickname = inputElement ? inputElement.value : "";
     if (nickname === "") {
       setNickname("익명");
+    } else {
+      setNickname(nickname);
     }
-    setIsLoggedIn(true);
-  };
-
-  const handleSkipLogIn = () => {
-    setNickname("익명");
-    handleLogIn();
-  };
-
-  const offLogIn = () => {
-    setIsLoggedIn(false);
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
-      {isLoggedIn ? (
-        <ChatRoom nickname={nickname} offLogIn={offLogIn} />
-      ) : (
-        <LogIn
-          onChangeNickname={handleChangeNickname}
-          onLogIn={handleLogIn}
-          onSkipLogIn={handleSkipLogIn}
-        />
-      )}
+    <div className="d-flex flex-column justify-content-center align-items-center vh-100">
+      <LogIn
+        onChangeNickname={handleChangeNickname}
+        nicknameInput={nicknameInput}
+      />
+      <ChatRoom nickname={nickname} />
     </div>
   );
 }
