@@ -4,18 +4,22 @@ import LogIn from "src/components/logIn";
 import ChatRoom from "src/components/chatRoom";
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  const handleSignIn = () => {
-    setIsSignedIn(true);
+  const handleLogIn = () => {
+    setIsLoggedIn(true);
+  };
+
+  const offLogIn = () => {
+    setIsLoggedIn(false);
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      {isSignedIn ? (
-        <ChatRoom nickname="" />
+      {isLoggedIn ? (
+        <ChatRoom nickname="" offLogIn={offLogIn} />
       ) : (
-        <LogIn onSignedIn={handleSignIn} />
+        <LogIn onLogIn={handleLogIn} />
       )}
     </div>
   );

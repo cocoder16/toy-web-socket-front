@@ -3,9 +3,10 @@ import Button from "src/components/atom/Button";
 
 type IProps = {
   nickname: string;
+  offLogIn: () => void;
 };
 
-function ChatRoom({ nickname }: IProps) {
+function ChatRoom({ nickname, offLogIn }: IProps) {
   return (
     <div
       data-testid="chat-room"
@@ -16,6 +17,7 @@ function ChatRoom({ nickname }: IProps) {
         dataTestid="go-log-in-btn"
         className="btn btn-secondary w300"
         value="닉네임 새로 짓기"
+        onClick={offLogIn}
       />
       <div data-testid="chat-window" className="card" style={{ height: 600 }}>
         <div>list</div>

@@ -2,10 +2,10 @@ import React from "react";
 import Button from "src/components/atom/Button";
 
 type IProps = {
-  onSignedIn: () => void;
+  onLogIn: () => void;
 };
 
-function LogIn({ onSignedIn }: IProps) {
+function LogIn({ onLogIn }: IProps) {
   return (
     <div className="d-flex" data-testid="log-in">
       <form className="card" style={{ width: 300 }}>
@@ -30,7 +30,7 @@ function LogIn({ onSignedIn }: IProps) {
             dataTestid="skip-btn"
             className="btn btn-light"
             value="건너뛰기"
-            onClick={onSignedIn}
+            onClick={onLogIn}
           />
         </div>
       </form>
