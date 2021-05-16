@@ -12,6 +12,6 @@ describe("LogIn", () => {
     getByTestId("chat-window");
     getByTestId("message-input");
     getByTestId("message-send-btn");
-    getByTestId("go-log-in-btn"); // 로그인으로 돌아가는 버튼
+    getByTestId("go-log-in-btn");
   });
 });

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 
 import LogIn from "src/components/logIn";
 import ChatRoom from "src/components/chatRoom";
@@ -11,13 +11,13 @@ function App() {
   };
 
   return (
-    <Fragment>
+    <div className="d-flex justify-content-center align-items-center vh-100">
       {isSignedIn ? (
         <ChatRoom nickname="" />
       ) : (
         <LogIn onSignedIn={handleSignIn} />
       )}
-    </Fragment>
+    </div>
   );
 }
 

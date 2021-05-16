@@ -18,3 +18,15 @@ code {
   min-height: 100vh;
   background-color: #f8f9fa;
 }
+
+button.with-icon {
+  display: flex;
+}
+
+.w300 {
+  width: 300px;
+}
+
+.card {
+  padding: 14px;
+}

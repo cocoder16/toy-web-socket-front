@@ -9,3 +9,17 @@ https://stackoverflow.com/questions/50432556/cannot-use-jsx-unless-the-jsx-flag-
 CRA typescript 에서는 alias 설정을 못한다고 한다.
 강제로 하기위해서 eject하거나 추가적인 패키지 모듈을 설치하는 방법 등이 있는데, 그러면 너무 환경설정이 귀찮아지는 문제가 있어서,
 "baseUrl": "." 설정이 되는 것에 만족하고, 절대경로를 src 부터 시작하는 것으로 만족하기로 했다.
+
+* material-icon font 로 사용
+
+https://material-ui.com/components/icons/
+
+head에 link 넣고
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+컴포넌트 파일에서는 다음과 같이 사용
+import Icon from '@material-ui/core/Icon';
+
+<Icon>star</Icon> 
+
+star는 예시 아이콘 이름

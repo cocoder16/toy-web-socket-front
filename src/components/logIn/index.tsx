@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "src/components/atom/Button";
 
 type IProps = {
   onSignedIn: () => void;
@@ -6,10 +7,8 @@ type IProps = {
 
 function LogIn({ onSignedIn }: IProps) {
   return (
-    <div
-      className="d-flex justify-content-center align-items-center vh-100"
-      data-testid="log-in">
-      <form className="card" style={{ width: 300, padding: 14 }}>
+    <div className="d-flex" data-testid="log-in">
+      <form className="card" style={{ width: 300 }}>
         <div className="mb-3">
           <label htmlFor="user-name-input" className="form-label">
             닉네임
@@ -26,16 +25,13 @@ function LogIn({ onSignedIn }: IProps) {
           </div>
         </div>
         <div className="d-flex justify-content-between">
-          <button type="button" className="btn btn-primary">
-            확인
-          </button>
-          <button
-            data-testid="skip-btn"
-            type="button"
+          <Button className="btn btn-primary" value="확인" />
+          <Button
+            dataTestid="skip-btn"
             className="btn btn-light"
-            onClick={onSignedIn}>
-            건너뛰기
-          </button>
+            value="건너뛰기"
+            onClick={onSignedIn}
+          />
         </div>
       </form>
     </div>
