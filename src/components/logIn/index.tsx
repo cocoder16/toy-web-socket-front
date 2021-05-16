@@ -2,13 +2,15 @@ import React from "react";
 import Button from "src/components/atom/Button";
 
 type IProps = {
+  onChangeNickname?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onLogIn: () => void;
+  onSkipLogIn: () => void;
 };
 
-function LogIn({ onLogIn }: IProps) {
+function LogIn({ onLogIn, onChangeNickname, onSkipLogIn }: IProps) {
   return (
     <div className="d-flex" data-testid="log-in">
-      <form className="card" style={{ width: 300 }}>
+      <div className="card" style={{ width: 300 }}>
         <div className="mb-3">
           <label htmlFor="user-name-input" className="form-label">
             닉네임
@@ -19,6 +21,7 @@ function LogIn({ onLogIn }: IProps) {
             className="form-control"
             id="user-name-input"
             maxLength={12}
+            onChange={onChangeNickname}
           />
           <div id="emailHelp" className="form-text">
             건너뛰면 닉네임은 "익명"을 사용하게 됩니다.
@@ -29,15 +32,16 @@ function LogIn({ onLogIn }: IProps) {
             dataTestid="nickname-confirm-btn"
             className="btn btn-primary"
             value="확인"
+            onClick={onLogIn}
           />
           <Button
             dataTestid="skip-btn"
             className="btn btn-light"
             value="건너뛰기"
-            onClick={onLogIn}
+            onClick={onSkipLogIn}
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 }

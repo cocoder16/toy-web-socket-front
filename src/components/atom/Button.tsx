@@ -15,7 +15,10 @@ function Button({ dataTestid, withIcon, value, className, onClick }: IProps) {
       data-testid={dataTestid}
       type="button"
       className={`${className} with-icon`}
-      onClick={onClick}
+      onClick={event => {
+        event.preventDefault();
+        onClick && onClick();
+      }}
     >
       {withIcon ? <Icon>{value}</Icon> : value}
     </button>

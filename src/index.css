@@ -27,6 +27,15 @@ button.with-icon {
   width: 300px;
 }
 
+.send-btn {
+  height: 38px;
+  margin-left: 6px;
+}
+
 .card {
   padding: 14px;
+}
+
+.text-box {
+  padding: 6px;
 }
