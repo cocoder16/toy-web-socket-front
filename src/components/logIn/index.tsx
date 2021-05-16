@@ -25,7 +25,11 @@ function LogIn({ onLogIn }: IProps) {
           </div>
         </div>
         <div className="d-flex justify-content-between">
-          <Button className="btn btn-primary" value="확인" />
+          <Button
+            dataTestid="nickname-confirm-btn"
+            className="btn btn-primary"
+            value="확인"
+          />
           <Button
             dataTestid="skip-btn"
             className="btn btn-light"
