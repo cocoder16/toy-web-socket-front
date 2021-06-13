@@ -23,7 +23,6 @@ function ChatRoom({ nickname }: IProps) {
           <textarea
             data-testid="message-input"
             className="form-control"
-            id="user-name-input"
             maxLength={400}
           />
           <Button

@@ -2,9 +2,9 @@
 
 ## react
 
-새로 써본 기술 목록
+처음 써본 기술 목록
 
-- socket
+- socket.io
 - bootstrap
 
 ### reference
