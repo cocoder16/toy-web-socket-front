@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import socketIo from "socket.io-client";
 
 import LogIn from "src/components/logIn";
 import ChatRoom from "src/components/chatRoom";
@@ -6,6 +7,15 @@ import ChatRoom from "src/components/chatRoom";
 function App() {
   const [nickname, setNickname] = useState<string>("익명");
   const nicknameInput = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const ENDPOINT = process.env.REACT_APP_BACK_URL as string;
+    const socket = socketIo(ENDPOINT, { withCredentials: true });
+
+    socket.on("connect", () => {
+      console.log("socket server connected");
+    });
+  }, []);
 
   const handleChangeNickname = () => {
     const inputElement = nicknameInput.current;

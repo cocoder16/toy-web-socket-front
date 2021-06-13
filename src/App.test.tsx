@@ -32,7 +32,7 @@ describe("App", () => {
   });
 
   it("join a room", done => {
-    const ENDPOINT = "localhost:4000";
+    const ENDPOINT = process.env.REACT_APP_BACK_URL as string;
     const socket = socketIo(ENDPOINT);
 
     const { getByText } = setUp();
