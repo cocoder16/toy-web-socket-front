@@ -44,3 +44,10 @@ button.with-icon {
 .text-box {
   padding: 6px;
 }
+
+.time {
+  margin-left: 4px;
+  color: #aaa;
+  font-size: 13px;
+  line-height: 2;
+}

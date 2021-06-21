@@ -17,8 +17,8 @@ function App() {
       console.log("socket server connected.");
       socket.emit("join", { name: nickname });
 
-      socket.on("receive", (data: any) => {
-        setMessages(messages => [...messages, data]);
+      socket.on("receive", (newMessage: IMessage) => {
+        setMessages(messages => [...messages, newMessage]);
       });
     });
 

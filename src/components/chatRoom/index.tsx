@@ -1,4 +1,5 @@
 import Button from "src/components/atom/Button";
+import MessageItem from "src/components/chatRoom/MessageItem";
 
 type IProps = {
   nickname: string;
@@ -17,16 +18,8 @@ function ChatRoom({ nickname, messages }: IProps) {
       </div>
       <div data-testid="chat-window" className="card" style={{ height: 600 }}>
         <div>
-          {messages.map((message, index) => {
-            const { nickname, content } = message;
-            return (
-              <div key={index} className="d-flex flex-row">
-                {nickname && (
-                  <div className="message-nickname">{nickname}: </div>
-                )}
-                <div>{content}</div>
-              </div>
-            );
+          {messages.map(message => {
+            return <MessageItem key={message.id} message={message} />;
           })}
         </div>
       </div>
