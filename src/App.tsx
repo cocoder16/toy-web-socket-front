@@ -6,6 +6,7 @@ import ChatRoom from "src/components/chatRoom";
 
 function App() {
   const [nickname, setNickname] = useState<string>("익명");
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const nicknameInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -13,9 +14,18 @@ function App() {
     const socket = socketIo(ENDPOINT, { withCredentials: true });
 
     socket.on("connect", () => {
-      console.log("socket server connected");
+      console.log("socket server connected.");
+      socket.emit("join", { name: nickname });
+
+      socket.on("receive", (data: any) => {
+        setMessages(messages => [...messages, data]);
+      });
     });
-  }, []);
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [nickname]);
 
   const handleChangeNickname = () => {
     const inputElement = nicknameInput.current;
@@ -33,7 +43,7 @@ function App() {
         onChangeNickname={handleChangeNickname}
         nicknameInput={nicknameInput}
       />
-      <ChatRoom nickname={nickname} />
+      <ChatRoom nickname={nickname} messages={messages} />
     </div>
   );
 }

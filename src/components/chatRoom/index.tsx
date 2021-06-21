@@ -1,11 +1,11 @@
-import React from "react";
 import Button from "src/components/atom/Button";
 
 type IProps = {
   nickname: string;
+  messages: IMessage[];
 };
 
-function ChatRoom({ nickname }: IProps) {
+function ChatRoom({ nickname, messages }: IProps) {
   return (
     <div
       data-testid="chat-room"
@@ -16,7 +16,19 @@ function ChatRoom({ nickname }: IProps) {
         <span data-testid="my-nickname">{nickname}</span> 님 환영합니다!
       </div>
       <div data-testid="chat-window" className="card" style={{ height: 600 }}>
-        <div>list</div>
+        <div>
+          {messages.map((message, index) => {
+            const { nickname, content } = message;
+            return (
+              <div key={index} className="d-flex flex-row">
+                {nickname && (
+                  <div className="message-nickname">{nickname}: </div>
+                )}
+                <div>{content}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <form className="card">
         <div className="d-flex align-items-center">

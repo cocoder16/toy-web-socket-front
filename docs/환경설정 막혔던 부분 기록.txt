@@ -23,3 +23,6 @@ import Icon from '@material-ui/core/Icon';
 <Icon>star</Icon> 
 
 star는 예시 아이콘 이름
+
+* test 파일에서는 env 환경변수가 적용안되는 것: test전용 환경변수 설정은 따로 해줘야 함.
+.env.test

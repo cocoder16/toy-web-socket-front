@@ -1,4 +1,4 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import socketIo from "socket.io-client";
 
 import App from "src/App";
@@ -33,16 +33,18 @@ describe("App", () => {
 
   it("join a room", done => {
     const ENDPOINT = process.env.REACT_APP_BACK_URL as string;
-    const socket = socketIo(ENDPOINT);
+    const socket = socketIo(ENDPOINT, { withCredentials: true });
 
     const { getByText } = setUp();
 
-    socket.on("connect", () => {
+    socket.on("connect", async () => {
       socket.emit("join", { name: "익명" });
+      await waitFor(() => getByText("익명 has joined the room."), {
+        timeout: 2000,
+      });
       socket.disconnect();
       done();
     });
-    getByText("익명 has joined the room.");
   });
 
   // it("input and send message", () => {

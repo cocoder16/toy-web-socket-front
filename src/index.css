@@ -27,6 +27,11 @@ button.with-icon {
   width: 300px;
 }
 
+.message-nickname {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
 .send-btn {
   height: 38px;
   margin-left: 6px;
