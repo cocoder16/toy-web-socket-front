@@ -1,12 +1,30 @@
+import { useState, useCallback, useEffect, useContext } from "react";
+
 import Button from "src/components/atom/Button";
 import MessageItem from "src/components/chatRoom/MessageItem";
+import { SocketContext } from "src/service/socket";
 
 type IProps = {
   nickname: string;
-  messages: IMessage[];
 };
 
-function ChatRoom({ nickname, messages }: IProps) {
+function ChatRoom({ nickname }: IProps) {
+  const [messages, setMessages] = useState<IMessage[]>([]);
+  const socket = useContext(SocketContext);
+
+  const handleSendMesssage = useCallback(() => {}, []); // TODO
+  const handleReceiveMessage = useCallback((newMessage: IMessage) => {
+    setMessages(messages => [...messages, newMessage]);
+  }, []);
+
+  useEffect(() => {
+    socket.on("RECEIVE", handleReceiveMessage);
+
+    return () => {
+      socket.off("RECEIVE", handleReceiveMessage);
+    };
+  }, [socket, handleReceiveMessage]);
+
   return (
     <div
       data-testid="chat-room"
@@ -35,6 +53,7 @@ function ChatRoom({ nickname, messages }: IProps) {
             className="btn btn-primary send-btn"
             withIcon
             value="send"
+            onClick={handleSendMesssage}
           />
         </div>
       </form>

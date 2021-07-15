@@ -6,7 +6,7 @@ type IProps = {
   withIcon?: boolean;
   value?: string;
   className?: string;
-  onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: (event?: any) => void;
 };
 
 function Button({ dataTestid, withIcon, value, className, onClick }: IProps) {
@@ -17,7 +17,7 @@ function Button({ dataTestid, withIcon, value, className, onClick }: IProps) {
       className={`${className} with-icon`}
       onClick={event => {
         event.preventDefault();
-        onClick && onClick();
+        onClick && onClick(event);
       }}
     >
       {withIcon ? <Icon>{value}</Icon> : value}

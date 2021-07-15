@@ -5,7 +5,6 @@ import ChatRoom from "src/components/chatRoom";
 describe("LogIn", () => {
   const props = {
     nickname: "렌고쿠 쿄주로",
-    messages: [],
   };
   const { getByTestId } = render(<ChatRoom {...props} />);
 
