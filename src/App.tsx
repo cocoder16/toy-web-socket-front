@@ -23,6 +23,7 @@ function App() {
     });
 
     return () => {
+      console.log("socket server disconnected.");
       socket.disconnect();
     };
   }, [nickname]);

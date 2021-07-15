@@ -16,12 +16,14 @@ describe("App", () => {
   };
   const userMe: User = { name: "렌고쿠 쿄주로" };
   const userYou: User = { name: "카마도 탄지로" };
+  const ENDPOINT = process.env.REACT_APP_BACK_URL as string;
 
   it("input nickname and submit", () => {
     const { getByTestId } = setUp();
     const nicknameInput = getByTestId("nickname-input");
     const nicknameConfirmBtn = getByTestId("nickname-confirm-btn");
     const myNickname = getByTestId("my-nickname");
+
     fireEvent.change(nicknameInput, { target: { value: userMe.name } });
     fireEvent.click(nicknameConfirmBtn);
     expect(myNickname).toHaveTextContent(userMe.name);
@@ -32,10 +34,8 @@ describe("App", () => {
   });
 
   it("join a room", done => {
-    const ENDPOINT = process.env.REACT_APP_BACK_URL as string;
-    const socket = socketIo(ENDPOINT, { withCredentials: true });
-
     const { getByText } = setUp();
+    const socket = socketIo(ENDPOINT, { withCredentials: true });
 
     socket.on("connect", async () => {
       socket.emit("join", { name: "익명" });
@@ -47,28 +47,26 @@ describe("App", () => {
     });
   });
 
-  // it("input and send message", () => {
-  //   const { getByTestId } = setUp();
-  //   const messageInput = getByTestId("message-input");
-  //   const messageSendBtn = getByTestId("message-send-btn");
-  //   const ENDPOINT = "localhost:4000";
-  //   const socket = socketIo(ENDPOINT);
+  it("send message", done => {
+    const { getByText } = setUp();
+    const socket = socketIo(ENDPOINT, { withCredentials: true });
 
-  //   socket.on("connect", () => {
-  //     socket.emit("join", userMe, (data: { message: string }) => {
-  //       console.log("data: ", data);
-  //       const { message } = data;
-  //       expect(message).toEqual(`익명 has joined the room.`);
-  //     });
-  //     socket.disconnect();
-  //     done();
-  //   });
-
-  //   fireEvent;
-  //   expect(mockSocket.emit).toHaveBeenCalledWith(
-  //     "join",
-  //     { name: "Paola", room: "1" },
-  //     expect.any(Function)
-  //   );
-  // });
+    socket.on("connect", async () => {
+      socket.emit("join", userMe);
+      socket.emit("send", { user: userMe, content: "hi!" });
+      await waitFor(
+        () => {
+          getByText("렌고쿠 쿄주로");
+          getByText("hi!");
+        },
+        {
+          timeout: 2000,
+        }
+      );
+      socket.disconnect();
+      done();
+    });
+  });
+  // 소켓 통신 테스트를 통과하면
+  // 소켓 이벤트를 발생시키는 함수의 테스트를 통과시킨다.
 });

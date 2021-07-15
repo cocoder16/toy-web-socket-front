@@ -18,8 +18,8 @@ function ChatRoom({ nickname, messages }: IProps) {
       </div>
       <div data-testid="chat-window" className="card" style={{ height: 600 }}>
         <div>
-          {messages.map(message => {
-            return <MessageItem key={message.id} message={message} />;
+          {messages.map((message, index) => {
+            return <MessageItem key={index} message={message} />;
           })}
         </div>
       </div>
