@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useContext } from "react";
 
-import Button from "src/components/atom/Button";
+import Button from "src/components/atoms/Button";
+import Textarea from "src/components/atoms/Textarea";
 import MessageItem from "src/components/chatRoom/MessageItem";
 import { SocketContext } from "src/service/socket";
 
@@ -10,9 +11,24 @@ type IProps = {
 
 function ChatRoom({ nickname }: IProps) {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [typingMessage, setTypingMessage] = useState<string>("");
   const socket = useContext(SocketContext);
 
-  const handleSendMesssage = useCallback(() => {}, []); // TODO
+  const handleChangeTypingMessage = useCallback((event: any) => {
+    setTypingMessage(event.target.value);
+  }, []);
+
+  const handleSendMesssage = useCallback(() => {
+    const noContent = typingMessage.trim() === "";
+
+    if (noContent) {
+      return;
+    }
+
+    socket.emit("SEND", { user: { name: nickname }, content: typingMessage });
+    setTypingMessage("");
+  }, [socket, nickname, typingMessage]);
+
   const handleReceiveMessage = useCallback((newMessage: IMessage) => {
     setMessages(messages => [...messages, newMessage]);
   }, []);
@@ -43,10 +59,14 @@ function ChatRoom({ nickname }: IProps) {
       </div>
       <form className="card">
         <div className="d-flex align-items-center">
-          <textarea
-            data-testid="message-input"
+          <Textarea
+            dataTestid="message-input"
             className="form-control"
             maxLength={400}
+            autoFocus
+            value={typingMessage}
+            onChange={handleChangeTypingMessage}
+            onPressEnter={handleSendMesssage}
           />
           <Button
             dataTestid="message-send-btn"

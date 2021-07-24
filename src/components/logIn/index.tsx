@@ -1,17 +1,23 @@
 import { useState, useCallback } from "react";
-import Button from "src/components/atom/Button";
+
+import Button from "src/components/atoms/Button";
+import Input from "src/components/atoms/Input";
 
 type IProps = {
-  onChangeNickname: (event?: any) => void;
+  handleSubmitNickname: (event?: any) => void;
 };
 
-function LogIn({ onChangeNickname }: IProps) {
-  const [nickname, setNickname] = useState("");
+function LogIn({ handleSubmitNickname }: IProps) {
+  const [nickname, setNickname] = useState<string>("");
 
-  const handleChangeInput = useCallback((event: any) => {
-    const { value } = event.target;
-    setNickname(value);
+  const handleChangeNickname = useCallback((event: any) => {
+    setNickname(event.target.value);
   }, []);
+
+  const handleSubmit = useCallback(() => {
+    handleSubmitNickname(nickname);
+    setNickname("");
+  }, [handleSubmitNickname, nickname]);
 
   return (
     <div className="d-flex" data-testid="log-in">
@@ -19,28 +25,21 @@ function LogIn({ onChangeNickname }: IProps) {
         <label htmlFor="user-name-input" style={{ width: 60 }}>
           닉네임
         </label>
-        <input
-          data-testid="nickname-input"
+        <Input
+          dataTestid="nickname-input"
           type="text"
           className="form-control w300"
           id="user-name-input"
           maxLength={12}
           value={nickname}
-          onChange={handleChangeInput}
-          onKeyDown={event => {
-            // TODO: 키누르고있으면 계속 실행됨.
-            if (event.code === "Enter") {
-              event.preventDefault();
-              onChangeNickname(nickname);
-              setNickname("");
-            }
-          }}
+          onChange={handleChangeNickname}
+          onPressEnter={handleSubmit}
         />
         <Button
           dataTestid="nickname-confirm-btn"
           className="btn btn-primary send-btn"
           value="확인"
-          onClick={onChangeNickname}
+          onClick={handleSubmit}
         />
       </div>
     </div>

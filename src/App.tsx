@@ -18,8 +18,7 @@ function App() {
     socket.emit("JOIN", { name: nickname });
   }, [nickname]);
 
-  const handleChangeNickname = useCallback((nickname: string) => {
-    console.log("FIRE");
+  const handleSubmitNickname = useCallback((nickname: string) => {
     if (nickname === "") {
       setNickname("익명");
     } else {
@@ -30,7 +29,7 @@ function App() {
   return (
     <SocketContext.Provider value={socket}>
       <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-        <LogIn onChangeNickname={handleChangeNickname} />
+        <LogIn handleSubmitNickname={handleSubmitNickname} />
         <ChatRoom nickname={nickname} />
       </div>
     </SocketContext.Provider>

@@ -1,4 +1,3 @@
-import React from "react";
 import Icon from "@material-ui/core/Icon";
 
 type IProps = {
@@ -6,7 +5,7 @@ type IProps = {
   withIcon?: boolean;
   value?: string;
   className?: string;
-  onClick?: (event?: any) => void;
+  onClick?: () => void;
 };
 
 function Button({ dataTestid, withIcon, value, className, onClick }: IProps) {
@@ -17,7 +16,7 @@ function Button({ dataTestid, withIcon, value, className, onClick }: IProps) {
       className={`${className} with-icon`}
       onClick={event => {
         event.preventDefault();
-        onClick && onClick(event);
+        onClick && onClick();
       }}
     >
       {withIcon ? <Icon>{value}</Icon> : value}
