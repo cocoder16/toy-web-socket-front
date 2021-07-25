@@ -9,7 +9,6 @@ function App() {
 
   useEffect(() => {
     return () => {
-      console.log("socket server disconnected.");
       socket.disconnect();
     };
   }, []);

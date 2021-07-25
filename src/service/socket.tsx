@@ -5,4 +5,11 @@ import { URL } from "src/config/environments";
 
 export const socket = socketIo(String(URL.BACK), { withCredentials: true });
 export const SocketContext = createContext(socket);
-console.log("socket server connected.");
+
+socket.on("connect", () => {
+  console.log("socket server connected.");
+});
+
+socket.on("disconnect", () => {
+  console.log("socket server disconnected.");
+});
