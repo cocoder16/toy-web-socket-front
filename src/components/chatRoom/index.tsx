@@ -4,6 +4,7 @@ import Button from "src/components/atoms/Button";
 import Textarea from "src/components/atoms/Textarea";
 import MessageItem from "src/components/chatRoom/MessageItem";
 import { SocketContext } from "src/service/socket";
+import { SOCKET_EVENT } from "src/config/event";
 
 type IProps = {
   nickname: string;
@@ -25,7 +26,10 @@ function ChatRoom({ nickname }: IProps) {
       return;
     }
 
-    socket.emit("SEND", { user: { name: nickname }, content: typingMessage });
+    socket.emit(SOCKET_EVENT.SEND, {
+      user: { name: nickname },
+      content: typingMessage,
+    });
     setTypingMessage("");
   }, [socket, nickname, typingMessage]);
 
@@ -34,10 +38,10 @@ function ChatRoom({ nickname }: IProps) {
   }, []);
 
   useEffect(() => {
-    socket.on("RECEIVE", handleReceiveMessage);
+    socket.on(SOCKET_EVENT.RECEIVE, handleReceiveMessage);
 
     return () => {
-      socket.off("RECEIVE", handleReceiveMessage);
+      socket.off(SOCKET_EVENT.RECEIVE, handleReceiveMessage);
     };
   }, [socket, handleReceiveMessage]);
 

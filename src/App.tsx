@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import LogIn from "src/components/logIn";
 import ChatRoom from "src/components/chatRoom";
 import { socket, SocketContext } from "src/service/socket";
+import { SOCKET_EVENT } from "src/config/event";
 
 function App() {
   const [nickname, setNickname] = useState<string>("익명");
@@ -14,7 +15,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    socket.emit("JOIN", { name: nickname });
+    socket.emit(SOCKET_EVENT.JOIN, { name: nickname });
   }, [nickname]);
 
   const handleSubmitNickname = useCallback((nickname: string) => {

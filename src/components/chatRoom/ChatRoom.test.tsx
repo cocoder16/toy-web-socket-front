@@ -2,6 +2,7 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 
 import ChatRoom from "src/components/chatRoom";
 import { socket } from "src/service/socket";
+import { SOCKET_EVENT } from "src/config/event";
 
 jest.mock("src/service/socket");
 jest.spyOn(socket, "on");
@@ -38,12 +39,15 @@ describe("ChatRoom", () => {
     fireEvent.click(messageSendBtn);
 
     // 2. socket 이벤트는 이런것들을 기대하고 (socket은 mock)
-    expect(socket.emit).toHaveBeenCalledWith("SEND", {
+    expect(socket.emit).toHaveBeenCalledWith(SOCKET_EVENT.SEND, {
       user: { name: defaultProps.nickname },
       content: "hi!",
     });
     expect(socket.on).toBeCalledTimes(1); // TODO: 위 fireEvent 코드나 emit 없어도 그냥 통과되는데?
-    expect(socket.on).toBeCalledWith("RECEIVE", expect.any(Function));
+    expect(socket.on).toBeCalledWith(
+      SOCKET_EVENT.RECEIVE,
+      expect.any(Function)
+    );
 
     // 3. 그 결과 이런 것들이 렌더링 되기를 원함.
     // TODO: handleReceiveMessage 가 없어서 테스트 실패중
