@@ -7,6 +7,8 @@ type User = {
   name: string;
 };
 
+jest.mock("src/service/socket");
+
 describe("App", () => {
   const setUp = (props = {}) => {
     const utils = render(<App {...props} />);
@@ -14,10 +16,10 @@ describe("App", () => {
       ...utils,
     };
   };
-  const userMe: User = { name: "렌고쿠 쿄주로" };
+  const userMe: User = { name: "렌고쿠" };
 
-  it("input nickname and submit", () => {
-    const { getByTestId } = setUp();
+  it("input nickname and submit", async () => {
+    const { getByTestId, getByText } = setUp();
     const nicknameInput = getByTestId("nickname-input");
     const nicknameConfirmBtn = getByTestId("nickname-confirm-btn");
     const myNickname = getByTestId("my-nickname");
@@ -25,14 +27,9 @@ describe("App", () => {
     fireEvent.change(nicknameInput, { target: { value: userMe.name } });
     fireEvent.click(nicknameConfirmBtn);
     expect(myNickname).toHaveTextContent(userMe.name);
-  });
+    expect(socket.emit).toHaveBeenCalledWith("JOIN", userMe);
 
-  it("join a room", async () => {
-    const { getByText } = setUp();
-
-    socket.emit("JOIN", { name: "익명" });
-
-    await waitFor(() => getByText("익명"), {
+    await waitFor(() => getByText(userMe.name), {
       timeout: 2000,
     });
   });
