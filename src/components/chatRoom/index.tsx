@@ -13,7 +13,7 @@ type IProps = {
 function ChatRoom({ nickname }: IProps) {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [typingMessage, setTypingMessage] = useState<string>("");
-  const chatWindow = useRef<HTMLDivElement>(null);
+  const chatWindow = useRef<HTMLDivElement | null>(null);
   const socket = useContext(SocketContext);
 
   const handleChangeTypingMessage = useCallback((event: any) => {

@@ -19,6 +19,8 @@ describe("App", () => {
   };
   const userMe: User = { name: "렌고쿠" };
 
+  // it("join", () => {});
+
   it("input nickname and submit", async () => {
     const { getByTestId, getByText } = setUp();
     const nicknameInput = getByTestId("nickname-input");
