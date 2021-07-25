@@ -24,16 +24,17 @@ LogIn 컴포넌트 퍼블리싱 O
 방 참여 메시지 띄우기 O
 timestamp 추가 O
 왜 닉네임 인풋에서 엔터를 누르고 있으면 계속 콜백실행되는지? boolean ref로 엔터키 이벤트 fire제어 O
-socket test code도 usecontext에 맞게 수정?
+socket test code도 usecontext에 맞게 수정? O
 입력한 메시지 전송 O
-닉네임 로컬스토리지에 저장
-JOIN, UPDATE_NICKNAME(prev(ref) -> nickname(state)) 이벤트 분리
-도메인 주소 환경변수로 관리
-엔터 서브밋 (닉네임 O, 메시지)
-서버로부터 메시지 받기 {닉네임, 내용, 시각}을 배열로 state에 저장 O
+socket test code 잘못쓰고 있었음 실제 함수가 아닌 mock을 써야함. 안그럼 실제 서버에서 받아버리니까, 서버의존성이 생겨버림. (서버의존성 없는지 확인하려면 서버 끄고 테스트 돌려) O
+event type도 여러군데에서 사용되니 config에서 변수로 관리
+닉네임 로컬스토리지에 저장 (test)
+JOIN, UPDATE_NICKNAME(prev(ref) -> nickname(state)) 이벤트 분리 (test)
+도메인 주소 환경변수로 관리 O
+엔터 서브밋 (닉네임 O, 메시지 O)
+서버로부터 메시지 받기 {닉네임, 내용, 시각}을 배열로 state에 저장 O (test)
 스크롤 적용
 디자인 디테일 적용
 
-방네임을 서버에서 상수로 쓰고 있는데 클라에서 보내주는 방네임을 쓰는 것도 괜찮은듯 (여러 개의 방에 대한 확장성)
-
+소켓 서버에서 여러 방에 대해 제어
 소켓 서버에서 emit 을 룸이 아니라 특정 개인에게 보내기. (어떤 기능으로 해볼까)

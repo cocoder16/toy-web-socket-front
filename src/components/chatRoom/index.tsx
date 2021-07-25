@@ -51,11 +51,9 @@ function ChatRoom({ nickname }: IProps) {
         <span data-testid="my-nickname">{nickname}</span> 님 환영합니다!
       </div>
       <div data-testid="chat-window" className="card" style={{ height: 600 }}>
-        <div>
-          {messages.map((message, index) => {
-            return <MessageItem key={index} message={message} />;
-          })}
-        </div>
+        {messages.map((message, index) => {
+          return <MessageItem key={index} message={message} />;
+        })}
       </div>
       <form className="card">
         <div className="d-flex align-items-center">

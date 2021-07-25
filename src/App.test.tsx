@@ -30,6 +30,7 @@ describe("App", () => {
     expect(socket.emit).toHaveBeenCalledWith("JOIN", userMe);
 
     await waitFor(() => getByText(userMe.name), {
+      // TODO: 채팅창 위에 보이는 닉네임이랑 분리가 안되어서, testId로 받아서 테스트해야함.
       timeout: 2000,
     });
   });
