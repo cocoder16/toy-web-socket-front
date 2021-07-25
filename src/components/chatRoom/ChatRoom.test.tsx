@@ -33,6 +33,7 @@ describe("ChatRoom", () => {
     const { getByTestId, getByText } = setUp();
     const messsageInput = getByTestId("message-input");
     const messageSendBtn = getByTestId("message-send-btn");
+    const chatWindow = getByTestId("chat-window");
 
     // 1. UI에서 이런 이벤트들이 일어나면,
     fireEvent.change(messsageInput, { target: { value: "hi!" } });
@@ -53,6 +54,11 @@ describe("ChatRoom", () => {
     // TODO: handleReceiveMessage 가 없어서 테스트 실패중
     await waitFor(() => getByText("hi!"), {
       timeout: 2000,
+    });
+    expect(chatWindow.scrollTo).toBeCalledWith({
+      // TODO: 맞는지 모름.
+      top: chatWindow.scrollHeight,
+      behavior: "smooth",
     });
   });
 
