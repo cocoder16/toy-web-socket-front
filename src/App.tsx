@@ -8,9 +8,13 @@ import { SOCKET_EVENT } from "src/config/event";
 function App() {
   const prevNickname = useRef<string | null>(null);
   const [nickname, setNickname] = useState<string>("익명");
+  const nicknameRef = useRef<string>("익명");
 
   useEffect(() => {
     return () => {
+      socket.emit(SOCKET_EVENT.LEAVE, {
+        name: nicknameRef, // state는 dependency에 반드시 넣어줘야하나 ref는 그렇지 않아서 ref 사용.
+      });
       socket.disconnect();
     };
   }, []);
@@ -24,6 +28,7 @@ function App() {
     } else {
       socket.emit(SOCKET_EVENT.JOIN, { name: nickname });
     }
+    nicknameRef.current = nickname;
   }, [nickname]);
 
   const handleSubmitNickname = useCallback(
