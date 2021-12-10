@@ -37,3 +37,10 @@ LEAVE 이벤트 emit (test)
 
 소켓 서버에서 여러 방에 대해 제어
 소켓 서버에서 emit 을 룸이 아니라 특정 개인에게 보내기. (어떤 기능으로 해볼까)
+
+-- 21.12.10
+
+test code들 제거.
+1. socket server는 mocking 해야하고 실제 서버에 요청을 보내면 안된다.
+2. request는 intercept하고 response는 stub한다.
+3. cypress를 사용하자.

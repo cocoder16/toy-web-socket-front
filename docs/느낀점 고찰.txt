@@ -1,19 +1,5 @@
 * 아톰 컴포넌트에 관하여
 
 - story book(유지보수성), styled-component(확장성) 적용하면 좋으나 이 프로젝트에서는 생략,
-- atom component 의 props값에 따른 렌더링은 storybook으로 충분하다고 판단. test code까지 필요한지는 모르겠음.
 - 특히 styled-component 를 적용하면 w300과 같은 className을 일일이 선언해서 쓰지 않아도 props로 width값을 내려줄 수 있어서
 w300같은 더러운 css코드를 남발하지 않아도 됨.
-
-* socket test code
-
-어떤걸 테스트코드로 작성해야하나?
-- 소켓 연결
-- 각 이벤트 발생과 응답 성공 시 렌더링 결과. (응답 콜백으로 데이터 받는거는 emit에서 지원안하는 것 같아서 아쉽)
-
-* ping pong test code 작성법?
-
-- client
-request code 작성, response이후 처리 코드 작성
-- server
-request listener code 작성, request이후 처리 코드 작성
