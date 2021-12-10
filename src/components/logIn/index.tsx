@@ -1,42 +1,47 @@
-import React from "react";
+import { useState, useCallback } from "react";
+
+import Button from "src/components/atoms/Button";
+import Input from "src/components/atoms/Input";
 
 type IProps = {
-  onSignedIn: () => void;
+  handleSubmitNickname: (event?: any) => void;
 };
 
-function LogIn({ onSignedIn }: IProps) {
+function LogIn({ handleSubmitNickname }: IProps) {
+  const [nickname, setNickname] = useState<string>("");
+
+  const handleChangeNickname = useCallback((event: any) => {
+    setNickname(event.target.value);
+  }, []);
+
+  const handleSubmit = useCallback(() => {
+    handleSubmitNickname(nickname);
+    setNickname("");
+  }, [handleSubmitNickname, nickname]);
+
   return (
-    <div
-      className="d-flex justify-content-center align-items-center vh-100"
-      data-testid="log-in">
-      <form className="card" style={{ width: 300, padding: 14 }}>
-        <div className="mb-3">
-          <label htmlFor="user-name-input" className="form-label">
-            닉네임
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="user-name-input"
-            maxLength={12}
-          />
-          <div id="emailHelp" className="form-text">
-            건너뛰면 닉네임은 "익명"을 사용하게 됩니다.
-          </div>
-        </div>
-        <div className="d-flex justify-content-between">
-          <button type="button" className="btn btn-primary">
-            확인
-          </button>
-          <button
-            data-testid="skip-btn"
-            type="button"
-            className="btn btn-light"
-            onClick={onSignedIn}>
-            건너뛰기
-          </button>
-        </div>
-      </form>
+    <div className="d-flex" data-testid="log-in">
+      <div className="card d-flex flex-row align-items-center">
+        <label htmlFor="user-name-input" style={{ width: 60 }}>
+          닉네임
+        </label>
+        <Input
+          dataTestid="nickname-input"
+          type="text"
+          className="form-control w300"
+          id="user-name-input"
+          maxLength={12}
+          value={nickname}
+          onChange={handleChangeNickname}
+          onPressEnter={handleSubmit}
+        />
+        <Button
+          dataTestid="nickname-confirm-btn"
+          className="btn btn-primary send-btn"
+          value="확인"
+          onClick={handleSubmit}
+        />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,5 @@
+* 아톰 컴포넌트에 관하여
+
+- story book(유지보수성), styled-component(확장성) 적용하면 좋으나 이 프로젝트에서는 생략,
+- 특히 styled-component 를 적용하면 w300과 같은 className을 일일이 선언해서 쓰지 않아도 props로 width값을 내려줄 수 있어서
+w300같은 더러운 css코드를 남발하지 않아도 됨.
