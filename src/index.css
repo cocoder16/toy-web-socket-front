@@ -53,6 +53,6 @@ button.with-icon {
 }
 
 .chat-window {
-  height: 600px;
+  height: 400px;
   overflow-y: auto;
 }
