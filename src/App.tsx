@@ -41,15 +41,6 @@ function App() {
 
   return (
     <SocketContext.Provider value={socket}>
-      <input
-        type="text"
-        onKeyPress={event => {
-          if (event.code === "Enter") {
-            event.preventDefault();
-            console.log("!!");
-          }
-        }}
-      />
       <div className="d-flex flex-column justify-content-center align-items-center vh-100">
         <NicknameForm handleSubmitNickname={handleSubmitNickname} />
         <ChatRoom nickname={nickname} />
