@@ -6,7 +6,6 @@ type IProps = {
   className?: string;
   onClick?: () => void;
 };
-
 function Button({ withIcon, value, className, onClick }: IProps) {
   return (
     <button

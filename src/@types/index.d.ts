@@ -1,4 +1,4 @@
-type IPingPongData = {
+ype IPingPongData = {
   prevNickname?: string;
   nickname: string;
   content?: string;

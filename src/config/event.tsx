@@ -1,0 +1,7 @@
+export const SOCKET_EVENT = {
+  JOIN: "JOIN",
+  UPDATE_NICKNAME: "UPDATE_NICKNAME",
+  SEND: "SEND",
+  RECEIVE: "RECEIVE",
+  LEAVE: "LEAVE",
+};
