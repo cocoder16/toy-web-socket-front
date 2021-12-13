@@ -22,7 +22,7 @@ function App() {
         nickname: nickname,
       });
     } else {
-      socket.emit(SOCKET_EVENT.JOIN, { nickname });
+      socket.emit(SOCKET_EVENT.JOIN_ROOM, { nickname });
     }
   }, [nickname]);
 

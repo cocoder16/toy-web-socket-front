@@ -28,7 +28,7 @@ socket test code도 usecontext에 맞게 수정? O
 입력한 메시지 전송 O
 socket test code 잘못쓰고 있었음 실제 함수가 아닌 mock을 써야함. 안그럼 실제 서버에서 받아버리니까, 서버의존성이 생겨버림. (서버의존성 없는지 확인하려면 서버 끄고 테스트 돌려) O
 event type도 여러군데에서 사용되니 config에서 변수로 관리 O
-JOIN, UPDATE_NICKNAME(prev(ref) -> nickname(state)) 이벤트 분리 O (test)
+JOIN_ROOM, UPDATE_NICKNAME(prev(ref) -> nickname(state)) 이벤트 분리 O (test)
 LEAVE 이벤트 emit (test)
 도메인 주소 환경변수로 관리 O
 엔터 서브밋 (닉네임 O, 메시지 O)

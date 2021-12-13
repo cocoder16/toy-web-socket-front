@@ -27,10 +27,10 @@ function MessageList() {
   );
 
   useEffect(() => {
-    socket.on(SOCKET_EVENT.RECEIVE, handleReceiveMessage);
+    socket.on(SOCKET_EVENT.RECEIVE_MESSAGE, handleReceiveMessage);
 
     return () => {
-      socket.off(SOCKET_EVENT.RECEIVE, handleReceiveMessage);
+      socket.off(SOCKET_EVENT.RECEIVE_MESSAGE, handleReceiveMessage);
     };
   }, [socket, handleReceiveMessage]);
 

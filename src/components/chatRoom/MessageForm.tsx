@@ -24,7 +24,7 @@ function MessageForm({ nickname }: IProps) {
       return;
     }
 
-    socket.emit(SOCKET_EVENT.SEND, {
+    socket.emit(SOCKET_EVENT.SEND_MESSAGE, {
       nickname,
       content: typingMessage,
     });
