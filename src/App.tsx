@@ -18,7 +18,7 @@ function App() {
     if (prevNickname.current) {
       socket.emit(SOCKET_EVENT.UPDATE_NICKNAME, {
         prevNickname: prevNickname.current,
-        nickname: nickname,
+        nickname,
       });
     } else {
       socket.emit(SOCKET_EVENT.JOIN_ROOM, { nickname });

@@ -25,13 +25,15 @@ export const makeMessage = (pongData: IPingPongData): IMessage => {
       contentLabel = `${nickname} has joined the room.`;
       break;
     }
-    case SOCKET_EVENT.UPDATE_NICKNAME:
+    case SOCKET_EVENT.UPDATE_NICKNAME: {
       contentLabel = `User's name has been changed.\n ${prevNickname} => ${nickname}.`;
       break;
-    case SOCKET_EVENT.SEND_MESSAGE:
+    }
+    case SOCKET_EVENT.SEND_MESSAGE: {
       contentLabel = String(content);
       nicknameLabel = nickname;
       break;
+    }
     default:
   }
 
