@@ -2,8 +2,7 @@ import { useState, useCallback, useContext } from "react";
 
 import Button from "src/components/atoms/Button";
 import Textarea from "src/components/atoms/Textarea";
-import { SocketContext } from "src/service/socket";
-import { SOCKET_EVENT } from "src/config/event";
+import { SocketContext, SOCKET_EVENT } from "src/service/socket";
 
 type IProps = {
   nickname: string;

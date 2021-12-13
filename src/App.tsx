@@ -2,8 +2,7 @@ import { useCallback, useEffect, useState, useRef } from "react";
 
 import NicknameForm from "src/components/nicknameForm";
 import ChatRoom from "src/components/chatRoom";
-import { socket, SocketContext } from "src/service/socket";
-import { SOCKET_EVENT } from "src/config/event";
+import { socket, SocketContext, SOCKET_EVENT } from "src/service/socket";
 
 function App() {
   const prevNickname = useRef<string | null>(null);

@@ -1,8 +1,7 @@
 import { useState, useCallback, useEffect, useContext, useRef } from "react";
 
 import MessageItem from "src/components/chatRoom/MessageItem";
-import { SocketContext } from "src/service/socket";
-import { SOCKET_EVENT } from "src/config/event";
+import { SocketContext, SOCKET_EVENT, makeMessage } from "src/service/socket";
 
 function MessageList() {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -19,7 +18,8 @@ function MessageList() {
   }, []);
 
   const handleReceiveMessage = useCallback(
-    (newMessage: IMessage) => {
+    (pongData: IPingPongData) => {
+      const newMessage = makeMessage(pongData);
       setMessages(messages => [...messages, newMessage]);
       moveScrollToReceiveMessage();
     },
