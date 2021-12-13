@@ -1,7 +1,4 @@
-import { useRef } from "react";
-
 type IProps = {
-  dataTestid?: string;
   type: string;
   className?: string;
   id?: string;
@@ -13,7 +10,6 @@ type IProps = {
 };
 
 function Input({
-  dataTestid,
   type,
   className,
   id,
@@ -23,11 +19,8 @@ function Input({
   onChange,
   onPressEnter,
 }: IProps) {
-  const isPressingKey = useRef<boolean>(false);
-
   return (
     <input
-      data-testid={dataTestid}
       type={type}
       className={className}
       id={id}
@@ -40,18 +33,7 @@ function Input({
       onKeyPress={event => {
         if (event.code === "Enter") {
           event.preventDefault();
-          if (onPressEnter && !isPressingKey.current) {
-            isPressingKey.current = true;
-            onPressEnter();
-          }
-        }
-      }}
-      onKeyUp={event => {
-        if (event.code === "Enter") {
-          event.preventDefault();
-          if (isPressingKey.current) {
-            isPressingKey.current = false;
-          }
+          onPressEnter && onPressEnter();
         }
       }}
     />

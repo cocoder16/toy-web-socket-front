@@ -1,7 +1,4 @@
-import { useRef } from "react";
-
 type IProps = {
-  dataTestid?: string;
   className?: string;
   id?: string;
   maxLength?: number;
@@ -12,7 +9,6 @@ type IProps = {
 };
 
 function Textarea({
-  dataTestid,
   className,
   id,
   maxLength,
@@ -21,11 +17,8 @@ function Textarea({
   onChange,
   onPressEnter,
 }: IProps) {
-  const isPressingKey = useRef<boolean>(false);
-
   return (
     <textarea
-      data-testid={dataTestid}
       className={className}
       id={id}
       maxLength={maxLength}
@@ -37,18 +30,7 @@ function Textarea({
       onKeyPress={event => {
         if (event.code === "Enter") {
           event.preventDefault();
-          if (onPressEnter && !isPressingKey.current) {
-            isPressingKey.current = true;
-            onPressEnter();
-          }
-        }
-      }}
-      onKeyUp={event => {
-        if (event.code === "Enter") {
-          event.preventDefault();
-          if (isPressingKey.current) {
-            isPressingKey.current = false;
-          }
+          onPressEnter && onPressEnter();
         }
       }}
     />
